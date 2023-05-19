@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hoang\\source\\repos\\PhanNhậtHoàng_PRN231_A01\\BussinessObject\\BussinessObject.csproj": {}
+    "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\BussinessObject\\BussinessObject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hoang\\source\\repos\\PhanNhậtHoàng_PRN231_A01\\BussinessObject\\BussinessObject.csproj": {
+    "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\BussinessObject\\BussinessObject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hoang\\source\\repos\\PhanNhậtHoàng_PRN231_A01\\BussinessObject\\BussinessObject.csproj",
+        "projectUniqueName": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\BussinessObject\\BussinessObject.csproj",
         "projectName": "BussinessObject",
-        "projectPath": "C:\\Users\\hoang\\source\\repos\\PhanNhậtHoàng_PRN231_A01\\BussinessObject\\BussinessObject.csproj",
+        "projectPath": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\BussinessObject\\BussinessObject.csproj",
         "packagesPath": "C:\\Users\\hoang\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hoang\\source\\repos\\PhanNhậtHoàng_PRN231_A01\\BussinessObject\\obj\\",
+        "outputPath": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\BussinessObject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hoang\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -6422,11 +6422,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hoang\\source\\repos\\PhanNhậtHoàng_PRN231_A01\\ProjectManagementAPI\\ProjectManagementAPI.csproj",
+      "projectUniqueName": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\ProjectManagementAPI\\ProjectManagementAPI.csproj",
       "projectName": "ProjectManagementAPI",
-      "projectPath": "C:\\Users\\hoang\\source\\repos\\PhanNhậtHoàng_PRN231_A01\\ProjectManagementAPI\\ProjectManagementAPI.csproj",
+      "projectPath": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\ProjectManagementAPI\\ProjectManagementAPI.csproj",
       "packagesPath": "C:\\Users\\hoang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hoang\\source\\repos\\PhanNhậtHoàng_PRN231_A01\\ProjectManagementAPI\\obj\\",
+      "outputPath": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\ProjectManagementAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hoang\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6443,11 +6443,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\hoang\\source\\repos\\PhanNhậtHoàng_PRN231_A01\\BussinessObject\\BussinessObject.csproj": {
-              "projectPath": "C:\\Users\\hoang\\source\\repos\\PhanNhậtHoàng_PRN231_A01\\BussinessObject\\BussinessObject.csproj"
+            "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\BussinessObject\\BussinessObject.csproj": {
+              "projectPath": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\BussinessObject\\BussinessObject.csproj"
             },
-            "C:\\Users\\hoang\\source\\repos\\PhanNhậtHoàng_PRN231_A01\\Repository\\Repository.csproj": {
-              "projectPath": "C:\\Users\\hoang\\source\\repos\\PhanNhậtHoàng_PRN231_A01\\Repository\\Repository.csproj"
+            "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\Repository\\Repository.csproj": {
+              "projectPath": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\Repository\\Repository.csproj"
             }
           }
         }
