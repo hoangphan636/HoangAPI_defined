@@ -13,8 +13,11 @@
 <h1>Welcome, @customerName!</h1>
 <p>Email: @email</p>  
 <div class="logout-container">
-    <a asp-action="Logout" class="btn btn-primary">Logout</a>
+    <a asp-action="Logout" class="btn btn-primary">Log out</a>
+    <a asp-action="Order" class="btn btn-primary">Order Manage</a>
+    <a asp-action="Flowerbouquet" class="btn btn-primary">Flower Bouquet Manage</a>
 </div>
+
 
 
 <p>
@@ -98,7 +101,7 @@
 
     .logout-container {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
     }
 
     .btn-danger {

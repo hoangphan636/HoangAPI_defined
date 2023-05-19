@@ -13,5 +13,10 @@ namespace Repository
         Customer FindCustomerById(string Email, string password);
         void SaveCustomer(Customer product);
         Customer checkAdminLogin(string email, string password);
+        Customer FindCustomerById(int id);
+
+        void UpdateCustomer(Customer Customer);
+        void DeleteCustomer(Customer Customer);
+
     }
 }

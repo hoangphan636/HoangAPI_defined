@@ -1,0 +1,95 @@
+﻿@model BussinessObject.Customer
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    .details-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+
+    .details-label {
+        flex-basis: 30%;
+    }
+
+    .details-value {
+        flex-basis: 70%;
+    }
+</style>
+
+<h1>Details</h1>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.CustomerID)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.Email)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.Email)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.CustomerName)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.City)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.City)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.Country)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.Country)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.password)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.password)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.BirthDay)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.BirthDay)
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.CustomerID" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

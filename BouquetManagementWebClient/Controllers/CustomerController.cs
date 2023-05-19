@@ -6,6 +6,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using BussinessObject;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text;
 
 namespace BouquetManagementWebClient.Controllers
 {
@@ -49,6 +51,127 @@ namespace BouquetManagementWebClient.Controllers
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Login");
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Customer p)
+        {
+            if (ModelState.IsValid)
+            {
+                string strData = JsonSerializer.Serialize(p);
+                var contentData = new StringContent(strData, System.Text.Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(productApiUrl, contentData);
+                if (response.IsSuccessStatusCode)
+                {
+                    ViewBag.Message = "Insert successfully!";
+                }
+                else
+                {
+                    ViewBag.Message = "Error while calling WebAPI!";
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/{id}");
+            string strData = await response.Content.ReadAsStringAsync();
+
+            using (JsonDocument document = JsonDocument.Parse(strData))
+            {
+                JsonElement root = document.RootElement;
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+       
+                Customer product = JsonSerializer.Deserialize<Customer>(root.GetRawText(), options);
+
+                return View(product);
+            }
+          
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/{id}");
+            string strData = await response.Content.ReadAsStringAsync();
+
+            using (JsonDocument document = JsonDocument.Parse(strData))
+            {
+                JsonElement root = document.RootElement;
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+
+                Customer product = JsonSerializer.Deserialize<Customer>(root.GetRawText(), options);
+
+                return View(product);
+            }
+        }
+
+
+        public async Task<IActionResult> Update(Customer product)
+        {
+            var json = JsonSerializer.Serialize(product);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PutAsync($"{productApiUrl}/{product.CustomerID}", content);
+            if (response.IsSuccessStatusCode)
+            {
+                string strData = await response.Content.ReadAsStringAsync();
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                var createdProduct = JsonSerializer.Deserialize<Customer>(strData, options);
+               
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        public async Task<IActionResult> Deleted(int id)
+        {
+            HttpResponseMessage response = await client.DeleteAsync($"{productApiUrl}/{id}");
+            string strData = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/{id}");
+            string strData = await response.Content.ReadAsStringAsync();
+
+            using (JsonDocument document = JsonDocument.Parse(strData))
+            {
+                JsonElement root = document.RootElement;
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                // Lấy đối tượng "product" từ JSON
+              
+                Customer product = JsonSerializer.Deserialize<Customer>(root.GetRawText(), options);
+
+                return View(product);
+            }
+
         }
     }
 }

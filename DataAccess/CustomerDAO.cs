@@ -44,14 +44,14 @@ namespace DataAccess
             return list;
         }
 
-        public static void SaveCustomer(Customer product)
+        public static void SaveCustomer(Customer Customer)
         {
 
             try
             {
                 using var context = new FUFlowerSystemDbContext();
 
-                context.Customer.Add(product);
+                context.Customer.Add(Customer);
                 context.SaveChanges();
             }
             catch (Exception ex)
@@ -71,6 +71,57 @@ namespace DataAccess
             }
             return null;
         }
+
+        public static Customer FindCustomerById(int id)
+        {
+            var list = new Customer();
+            try
+            {
+                using (var context = new FUFlowerSystemDbContext())
+                {
+                    list = context.Customer.FirstOrDefault(x => x.CustomerID == id);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
+        }
+
+        public static void UpdateCustomer(Customer Customer)
+        {
+
+            try
+            {
+                using var context = new FUFlowerSystemDbContext();
+
+                context.Customer.Update(Customer);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+        public static void DeleteCustomer(Customer Customer)
+        {
+
+            try
+            {
+                using var context = new FUFlowerSystemDbContext();
+
+                context.Customer.Remove(Customer);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
 
 
     }
