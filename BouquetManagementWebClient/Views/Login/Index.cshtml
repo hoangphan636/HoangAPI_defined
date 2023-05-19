@@ -1,0 +1,44 @@
+﻿@model BussinessObject.Customer
+@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Index";
+   
+}
+@{
+    // Lấy giá trị Session
+    string customerName = Context.Session.GetString("CustomerName");
+   
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <h3><span style="color: red;">@customerName</span></h3>
+
+    <h3>Login Form</h3>
+    @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
+    {
+        <p>@ViewData["ErrorMessage"]</p>
+    }
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <p>@ViewBag.Message</p>
+    }
+    <form method="post" asp-action="Login">
+        <div>
+            <label>Email:</label>
+            <input type="text" asp-for="@Model.Email" />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" asp-for="@Model.password" />
+        </div>
+        <div>
+            <input type="submit" value="Login" />
+        </div>
+    </form>
+</body>
+</html>
