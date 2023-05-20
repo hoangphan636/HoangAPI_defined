@@ -6417,19 +6417,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hoang\\.nuget\\packages\\": {}
+    "C:\\Users\\SSSS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\ProjectManagementAPI\\ProjectManagementAPI.csproj",
+      "projectUniqueName": "C:\\Users\\SSSS\\Documents\\GitHub\\HoangAPI_defined\\ProjectManagementAPI\\ProjectManagementAPI.csproj",
       "projectName": "ProjectManagementAPI",
-      "projectPath": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\ProjectManagementAPI\\ProjectManagementAPI.csproj",
-      "packagesPath": "C:\\Users\\hoang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\ProjectManagementAPI\\obj\\",
+      "projectPath": "C:\\Users\\SSSS\\Documents\\GitHub\\HoangAPI_defined\\ProjectManagementAPI\\ProjectManagementAPI.csproj",
+      "packagesPath": "C:\\Users\\SSSS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\SSSS\\Documents\\GitHub\\HoangAPI_defined\\ProjectManagementAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hoang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\SSSS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6443,11 +6443,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\BussinessObject\\BussinessObject.csproj": {
-              "projectPath": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\BussinessObject\\BussinessObject.csproj"
+            "C:\\Users\\SSSS\\Documents\\GitHub\\HoangAPI_defined\\BussinessObject\\BussinessObject.csproj": {
+              "projectPath": "C:\\Users\\SSSS\\Documents\\GitHub\\HoangAPI_defined\\BussinessObject\\BussinessObject.csproj"
             },
-            "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\Repository\\Repository.csproj": {
-              "projectPath": "C:\\Users\\hoang\\Documents\\GitHub\\HoangAPI_defined\\Repository\\Repository.csproj"
+            "C:\\Users\\SSSS\\Documents\\GitHub\\HoangAPI_defined\\Repository\\Repository.csproj": {
+              "projectPath": "C:\\Users\\SSSS\\Documents\\GitHub\\HoangAPI_defined\\Repository\\Repository.csproj"
             }
           }
         }
@@ -6473,8 +6473,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -6486,7 +6485,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
       }
     }
   }

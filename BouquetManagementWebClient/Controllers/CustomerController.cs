@@ -46,6 +46,13 @@ namespace BouquetManagementWebClient.Controllers
 
 
         }
+        public async Task<IActionResult> Flowerbouquet()  ///  http://localhost:44092/Customer/Index
+        {
+          
+            return RedirectToAction("Index", "FlowerBouquet");
+
+
+        }
 
         public async Task<IActionResult> Logout() 
         {

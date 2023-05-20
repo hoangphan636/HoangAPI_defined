@@ -1,4 +1,4 @@
-﻿@model BussinessObject.Customer
+﻿@model BusinessObject.FlowerBouquet
 
 @{
     ViewData["Title"] = "Details";
@@ -27,69 +27,77 @@
     <hr />
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.CustomerID)
+            @Html.DisplayNameFor(model => model.FlowerBouquetID)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.CustomerID)
+            @Html.DisplayFor(model => model.FlowerBouquetID)
         </div>
     </div>
 
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.CategoryID)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.Email)
+            @Html.DisplayFor(model => model.CategoryID)
         </div>
     </div>
 
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.CustomerName)
+            @Html.DisplayNameFor(model => model.FlowerBouquetName)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.CustomerName)
+            @Html.DisplayFor(model => model.FlowerBouquetName)
         </div>
     </div>
 
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayNameFor(model => model.Description)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.City)
+            @Html.DisplayFor(model => model.Description)
         </div>
     </div>
 
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.Country)
+            @Html.DisplayNameFor(model => model.UnitPrice)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.Country)
+            @Html.DisplayFor(model => model.UnitPrice)
         </div>
     </div>
 
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.password)
+            @Html.DisplayNameFor(model => model.UnitInStock)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.password)
+            @Html.DisplayFor(model => model.UnitInStock)
         </div>
     </div>
 
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.BirthDay)
+            @Html.DisplayNameFor(model => model.FlowerBouquetStatus)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.BirthDay)
+            @Html.DisplayFor(model => model.FlowerBouquetStatus)
+        </div>
+    </div>
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.SupplierID)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.SupplierID)
         </div>
     </div>
 </div>
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.CustomerID" class="btn btn-primary">Edit</a>
+    <a asp-action="Edit" asp-route-id="@Model?.FlowerBouquetID" class="btn btn-primary">Edit</a>
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>

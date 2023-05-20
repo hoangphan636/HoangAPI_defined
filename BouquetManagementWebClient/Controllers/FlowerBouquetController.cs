@@ -103,7 +103,7 @@ namespace BouquetManagementWebClient.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/{id}");
+            HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/custom/{id}");
             string strData = await response.Content.ReadAsStringAsync();
 
             using (JsonDocument document = JsonDocument.Parse(strData))

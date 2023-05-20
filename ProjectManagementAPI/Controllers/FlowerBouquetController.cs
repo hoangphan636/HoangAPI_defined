@@ -13,6 +13,8 @@ namespace ProjectManagementAPI.Controllers
     {
 
         FlowerBouquetRepository FlowerBouquet = new FlowerBouquetRepository();
+        SupplierRepository Supplier = new SupplierRepository();
+        CategoryRepository Category = new CategoryRepository();
         [HttpGet]
 
         public ActionResult<IEnumerable<FlowerBouquet>> GetProducts() => FlowerBouquet.GetFlowerBouquet();
@@ -30,11 +32,32 @@ namespace ProjectManagementAPI.Controllers
         public IActionResult Detail(int id)
         {
             var product = FlowerBouquet.FindFlowerBouquetById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+        return Ok(product);
+         
+        }
+
+        [HttpGet("custom/{id}")]
+        public IActionResult CustomDetail(int id)
+        {
+
+            var product = FlowerBouquet.FindFlowerBouquetById(id);
+            var supplierID = Supplier.GetSupplier();
+            var category = Category.GetCategory();
 
             if (product == null)
             {
                 return NotFound();
             }
+            var learn = new FlowerBouquetFull
+            {
+                FlowerBouquet = product,
+                Supplier = supplierID,
+                Category = category
+            };
 
 
 
