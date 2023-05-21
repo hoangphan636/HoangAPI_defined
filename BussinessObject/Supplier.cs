@@ -18,14 +18,14 @@ namespace BussinessObject
         }
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? SupplierID { get; set; }
-     
-        [StringLength(50)]
+
+        [StringLength(50, ErrorMessage = "The length  50 chara ")]
         public string SupplierName { get; set; }
-      
-        [StringLength(50)]
+
+        [StringLength(50, ErrorMessage = "The length  50 chara ")]
         public string SupplierAddress { get; set; }
-     
-        [StringLength(50)]
+
+        [StringLength(50, ErrorMessage = "The length  50 chara ")]
         public string telephone { get; set; }
 
 

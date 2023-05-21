@@ -285,3 +285,10 @@ C:\Users\SSSS\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\D
 C:\Users\SSSS\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\Debug\net5.0\BouquetManagementWebClient.pdb
 C:\Users\SSSS\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\Debug\net5.0\BouquetManagementWebClient.genruntimeconfig.cache
 C:\Users\SSSS\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\Debug\net5.0\ref\BouquetManagementWebClient.dll
+C:\Users\hoang\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\bin\Debug\net5.0\ProjectManagementAPI.StaticWebAssets.xml
+C:\Users\hoang\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\bin\Debug\net5.0\BouquetManagementWebClient.StaticWebAssets.xml
+C:\Users\hoang\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\Debug\net5.0\Razor\Views\Order\Create.cshtml.g.cs
+C:\Users\hoang\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\Debug\net5.0\Razor\Views\Order\Delete.cshtml.g.cs
+C:\Users\hoang\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\Debug\net5.0\Razor\Views\Order\Details.cshtml.g.cs
+C:\Users\hoang\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\Debug\net5.0\Razor\Views\Order\Edit.cshtml.g.cs
+C:\Users\hoang\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\Debug\net5.0\Razor\Views\Order\Index.cshtml.g.cs

@@ -15,10 +15,10 @@ namespace BusinessObject
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int OrderID { get; set; }
+        public int? OrderID { get; set; }
 
       
-        public int CustomerID { get; set; }
+        public int? CustomerID { get; set; }
 
        
         public DateTime OrderDate { get; set; }
@@ -26,12 +26,12 @@ namespace BusinessObject
        
         public DateTime ShippedDate { get; set; }
 
-     
-        [StringLength(50)]
+
+        [StringLength(50, ErrorMessage = "The length  50 chara ")]
         public string Freight { get; set; }
 
-       
-        [StringLength(50)]
+
+        [StringLength(50, ErrorMessage = "The length  50 chara ")]
         public string Total { get; set; }
 
       

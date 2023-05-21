@@ -1,8 +1,10 @@
-﻿@model BussinessObject.Customer
+﻿@model BusinessObject.FlowerBouquet
 
 @{
     ViewData["Title"] = "Delete";
 }
+
+
 <style>
     .details-row {
         display: flex;
@@ -17,82 +19,130 @@
     .details-value {
         flex-basis: 70%;
     }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        color: #212529;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        background-color: #f8f9fa;
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+    }
+
+    .btn-danger {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-secondary {
+        color: #fff;
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
 </style>
+
 <h1>Delete</h1>
 
-
-
 <div>
-    <h4>Customer</h4>
+    <h4>Flower Bouquet Details</h4>
     <hr />
+
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.CustomerID)
+            @Html.DisplayNameFor(model => model.FlowerBouquetID)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.CustomerID)
+            @Html.DisplayFor(model => model.FlowerBouquetID)
         </div>
     </div>
 
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.CategoryID)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.Email)
+            @Html.DisplayFor(model => model.CategoryID)
         </div>
     </div>
 
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.CustomerName)
+            @Html.DisplayNameFor(model => model.FlowerBouquetName)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.CustomerName)
+            @Html.DisplayFor(model => model.FlowerBouquetName)
         </div>
     </div>
 
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayNameFor(model => model.Description)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.City)
+            @Html.DisplayFor(model => model.Description)
         </div>
     </div>
 
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.Country)
+            @Html.DisplayNameFor(model => model.UnitPrice)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.Country)
+            @Html.DisplayFor(model => model.UnitPrice)
         </div>
     </div>
 
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.password)
+            @Html.DisplayNameFor(model => model.UnitInStock)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.password)
+            @Html.DisplayFor(model => model.UnitInStock)
         </div>
     </div>
 
     <div class="details-row">
         <div class="details-label">
-            @Html.DisplayNameFor(model => model.BirthDay)
+            @Html.DisplayNameFor(model => model.FlowerBouquetStatus)
         </div>
         <div class="details-value">
-            @Html.DisplayFor(model => model.BirthDay)
+            @Html.DisplayFor(model => model.FlowerBouquetStatus)
         </div>
     </div>
-    <form asp-action="Deleted" asp-route-id="@Model.CustomerID" class="confirm-delete">
-        <input type="hidden" name="id" value="@Model.CustomerID" />
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.SupplierID)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.SupplierID)
+        </div>
+    </div>
+
+   
+
+    <form asp-action="Deleted" asp-route-id="@Model.FlowerBouquetID" class="confirm-delete">
+        <input type="hidden" name="id" value="@Model.FlowerBouquetID" />
         <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')" /> |
         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
     </form>
-
-
 </div>
 

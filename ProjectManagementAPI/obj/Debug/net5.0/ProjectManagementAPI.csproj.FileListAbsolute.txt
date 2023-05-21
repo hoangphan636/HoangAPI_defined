@@ -201,3 +201,4 @@ C:\Users\SSSS\Documents\GitHub\HoangAPI_defined\ProjectManagementAPI\obj\Debug\n
 C:\Users\SSSS\Documents\GitHub\HoangAPI_defined\ProjectManagementAPI\obj\Debug\net5.0\ProjectManagementAPI.pdb
 C:\Users\SSSS\Documents\GitHub\HoangAPI_defined\ProjectManagementAPI\obj\Debug\net5.0\ProjectManagementAPI.genruntimeconfig.cache
 C:\Users\SSSS\Documents\GitHub\HoangAPI_defined\ProjectManagementAPI\obj\Debug\net5.0\ref\ProjectManagementAPI.dll
+C:\Users\hoang\Documents\GitHub\HoangAPI_defined\ProjectManagementAPI\bin\Debug\net5.0\ProjectManagementAPI.StaticWebAssets.xml

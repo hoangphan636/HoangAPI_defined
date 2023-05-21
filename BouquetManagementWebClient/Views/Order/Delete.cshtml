@@ -1,0 +1,141 @@
+﻿@model BusinessObject.Order
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<style>
+    .details-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+
+    .details-label {
+        flex-basis: 30%;
+    }
+
+    .details-value {
+        flex-basis: 70%;
+    }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        color: #212529;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        background-color: #f8f9fa;
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+    }
+
+    .btn-danger {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-secondary {
+        color: #fff;
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+</style>
+
+<h1>Delete</h1>
+
+<div>
+    <h4>Flower Bouquet Details</h4>
+    <hr />
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.OrderID)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.OrderID)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.CustomerID)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.OrderDate)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.ShippedDate)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.ShippedDate)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.Freight)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.Freight)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.Total)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.Total)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.OrderStatus)
+        </div>
+    </div>
+
+  
+
+
+
+    <form asp-action="Deleted" asp-route-id="@Model.OrderID" class="confirm-delete">
+        <input type="hidden" name="id" value="@Model.OrderID" />
+        <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')" /> |
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>
+

@@ -1,0 +1,96 @@
+﻿@model BusinessObject.Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    .details-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+
+    .details-label {
+        flex-basis: 30%;
+    }
+
+    .details-value {
+        flex-basis: 70%;
+    }
+</style>
+
+<h1>Details</h1>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.OrderID)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.OrderID)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.CustomerID)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.OrderDate)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.ShippedDate)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.ShippedDate)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.Freight)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.Freight)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.Total)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.Total)
+        </div>
+    </div>
+
+    <div class="details-row">
+        <div class="details-label">
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </div>
+        <div class="details-value">
+            @Html.DisplayFor(model => model.OrderStatus)
+        </div>
+    </div>
+    
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.OrderID" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

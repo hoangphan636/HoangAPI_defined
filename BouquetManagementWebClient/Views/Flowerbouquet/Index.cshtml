@@ -8,7 +8,10 @@
     // Lấy giá trị Session
     string customerName = Context.Session.GetString("CustomerName");
     string email = Context.Session.GetString("Email");
+    string message = Context.Session.GetString("message");
 }
+
+
 <h1>Index</h1>
 <h1>Welcome, @customerName!</h1>
 <p>Email: @email</p>
@@ -16,7 +19,7 @@
     <a asp-action="Logout" class="btn btn-primary">Log out</a>
 </div>
 
-
+<h1> @message</h1>
 <p>
     <a asp-action="Create">Create New</a>
 </p>

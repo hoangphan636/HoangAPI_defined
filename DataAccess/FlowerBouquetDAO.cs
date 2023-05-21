@@ -27,22 +27,7 @@ namespace DataAccess
             return list;
         }
 
-        //public static FlowerBouquet FindFlowerBouquetById(string Email, string password)
-        //{
-        //    var list = new FlowerBouquet();
-        //    try
-        //    {
-        //        using (var context = new FUFlowerSystemDbContext())
-        //        {
-        //            list = context.FlowerBouquet.FirstOrDefault(x => x.Email == Email && x.password == password);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //    return list;
-        //}
+     
 
         public static void SaveFlowerBouquet(FlowerBouquet FlowerBouquet)
         {

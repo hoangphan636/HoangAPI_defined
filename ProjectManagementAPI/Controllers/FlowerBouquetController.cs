@@ -15,6 +15,8 @@ namespace ProjectManagementAPI.Controllers
         FlowerBouquetRepository FlowerBouquet = new FlowerBouquetRepository();
         SupplierRepository Supplier = new SupplierRepository();
         CategoryRepository Category = new CategoryRepository();
+        OrderDetailRepository OrderDetail = new OrderDetailRepository();
+
         [HttpGet]
 
         public ActionResult<IEnumerable<FlowerBouquet>> GetProducts() => FlowerBouquet.GetFlowerBouquet();
@@ -63,6 +65,35 @@ namespace ProjectManagementAPI.Controllers
 
             return Ok(product);
         }
+
+
+
+        [HttpGet("custom")]
+        public IActionResult CustomDetails()
+        {
+
+            
+            var supplierID = Supplier.GetSupplier();
+            var category = Category.GetCategory();
+
+          
+            var learn = new FlowerBouquetFull
+            {
+                FlowerBouquet = null,
+                Supplier = supplierID,
+                Category = category
+            };
+
+
+
+            return Ok(learn);
+        }
+
+
+
+
+
+
         [HttpPut("{id}")]
         public IActionResult UpdateProduct(FlowerBouquet p)
         {
@@ -80,12 +111,19 @@ namespace ProjectManagementAPI.Controllers
         public ActionResult DeleteProduct(int id)
         {
             var product = FlowerBouquet.FindFlowerBouquetById(id);
+            var po = OrderDetail.FindFlowerBouquetById(id);
             if (product == null)
             {
                 return NotFound();
             }
 
-            FlowerBouquet.DeleteFlowerBouquet(product);
+            if (po == null)
+            {
+                FlowerBouquet.DeleteFlowerBouquet(product);
+                return Ok("null");
+            }
+           
+            
             return Ok();
         }
     }

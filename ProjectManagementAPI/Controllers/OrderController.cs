@@ -1,12 +1,75 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BussinessObject;
+using Microsoft.AspNetCore.Mvc;
+using Repository;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Collections.Generic;
+using BusinessObject;
 
 namespace ProjectManagementAPI.Controllers
 {
-    public class OrderController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class OrderController : ControllerBase
     {
-        public IActionResult Index()
+
+
+        OrderRepository Order = new OrderRepository();
+        [HttpGet]
+
+        public ActionResult<IEnumerable<Order>> GetProducts() => Order.GetOrder();
+
+        [HttpPost]
+        public ActionResult PostProduct(Order p)
         {
-            return View();
+            Order.SaveOrder(p);
+            return Ok();
         }
+
+        [HttpGet("{id}")]
+        public IActionResult Detail(int id)
+        {
+            var product = Order.FindOrderById(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+
+
+            return Ok(product);
+        }
+        [HttpPut("{id}")]
+        public IActionResult UpdateProduct(Order p)
+        {
+            var product = Order.FindOrderById(p.OrderID.Value);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            Order.UpdateOrder(p);
+            return RedirectToAction(nameof(Update), new { product });
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteProduct(int id)
+        {
+            var product = Order.FindOrderById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            Order.DeleteOrder(product);
+            return Ok();
+        }
+
+
+
+
+
+
+
     }
 }

@@ -20,18 +20,18 @@ namespace BusinessObject
        
         public int? CategoryID { get; set; }
 
-      
-        [StringLength(50)]
+
+        [StringLength(50, ErrorMessage = "The length  50 chara ")]
         public string FlowerBouquetName { get; set; }
 
-      
-        [StringLength(50)]
+
+        [StringLength(50, ErrorMessage = "The length  50 chara ")]
         public string Description { get; set; }
 
-     
+        [Range(1, 4000, ErrorMessage ="1 den 4000")]
         public decimal UnitPrice { get; set; }
 
-      
+        [Range(1, 50000, ErrorMessage = "1 den 50000")]
         public short UnitInStock { get; set; }
 
      

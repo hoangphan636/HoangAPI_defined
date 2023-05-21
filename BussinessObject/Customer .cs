@@ -20,8 +20,10 @@ namespace BussinessObject
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? CustomerID { get; set; }
         [StringLength(50)]
+        [EmailAddress]
+        
         public string Email { get; set; }
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "The length  50 chara ")]
         public string CustomerName { get; set; }
         [StringLength(50)]
         public string City { get; set; }

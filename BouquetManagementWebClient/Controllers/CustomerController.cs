@@ -54,6 +54,14 @@ namespace BouquetManagementWebClient.Controllers
 
         }
 
+        public async Task<IActionResult> Order()  ///  http://localhost:44092/Customer/Index
+        {
+
+            return RedirectToAction("Index", "Order");
+
+
+        }
+
         public async Task<IActionResult> Logout() 
         {
             HttpContext.Session.Clear();

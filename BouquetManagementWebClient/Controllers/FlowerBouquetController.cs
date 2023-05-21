@@ -8,6 +8,8 @@ using System.Text.Json;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessObject;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 namespace BouquetManagementWebClient.Controllers
 {
@@ -42,6 +44,7 @@ namespace BouquetManagementWebClient.Controllers
                 return View(listProducts);
 
             }
+            HttpContext.Session.Remove("message");
             return RedirectToAction("Index", "Login");
 
 
@@ -53,11 +56,40 @@ namespace BouquetManagementWebClient.Controllers
             return RedirectToAction("Index", "Login");
         }
 
-        public ActionResult Create()
-        {
-            return View();
+       
 
+
+
+        public async Task<IActionResult> Create()
+        {
+            HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/custom");
+
+            string strData = response.Content.ReadAsStringAsync().Result;
+
+            using (JsonDocument document = JsonDocument.Parse(strData))
+            {
+                JsonElement root = document.RootElement;
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                JsonElement supplierElement = root.GetProperty("supplier");
+                JsonElement categoryElement = root.GetProperty("category");
+
+                List<Category> categories = JsonSerializer.Deserialize<List<Category>>(categoryElement.GetRawText(), options);
+                List<Supplier> suppliers = JsonSerializer.Deserialize<List<Supplier>>(supplierElement.GetRawText(), options);
+
+                ViewBag.CategoryId = new SelectList(categories, nameof(Category.CategoryID), nameof(Category.CategoryName));
+                ViewBag.SupplierID = new SelectList(suppliers, nameof(Supplier.SupplierID), nameof(Supplier.SupplierName));
+                HttpContext.Session.Remove("message");
+                return View();
+            }
         }
+
+
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -77,8 +109,14 @@ namespace BouquetManagementWebClient.Controllers
                     ViewBag.Message = "Error while calling WebAPI!";
                 }
             }
+            HttpContext.Session.Remove("message");
             return RedirectToAction(nameof(Index));
         }
+
+
+
+
+
 
         public async Task<IActionResult> Details(int id)
         {
@@ -95,10 +133,10 @@ namespace BouquetManagementWebClient.Controllers
 
 
                 FlowerBouquet product = JsonSerializer.Deserialize<FlowerBouquet>(root.GetRawText(), options);
-
+                HttpContext.Session.Remove("message");
                 return View(product);
             }
-
+           
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -116,9 +154,10 @@ namespace BouquetManagementWebClient.Controllers
 
 
                 FlowerBouquet product = JsonSerializer.Deserialize<FlowerBouquet>(root.GetRawText(), options);
-
+                HttpContext.Session.Remove("message");
                 return View(product);
             }
+            
         }
 
 
@@ -137,18 +176,40 @@ namespace BouquetManagementWebClient.Controllers
                 var createdProduct = JsonSerializer.Deserialize<FlowerBouquet>(strData, options);
 
             }
+            HttpContext.Session.Remove("message");
             return RedirectToAction(nameof(Index));
         }
 
 
         public async Task<IActionResult> Deleted(int id)
         {
-            HttpResponseMessage response = await client.DeleteAsync($"{productApiUrl}/{id}");
-            string strData = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
+            HttpResponseMessage responses = await client.DeleteAsync($"{productApiUrl}/{id}");
+            string strDatas = await responses.Content.ReadAsStringAsync();
+            if (!strDatas.Equals("\"null\""))
             {
-                return RedirectToAction(nameof(Index));
+                HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/{id}");
+                string strData = await response.Content.ReadAsStringAsync();
+
+                using (JsonDocument document = JsonDocument.Parse(strData))
+                {
+                    JsonElement root = document.RootElement;
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+
+                    // Lấy đối tượng "product" từ JSON
+
+                    FlowerBouquet product = JsonSerializer.Deserialize<FlowerBouquet>(root.GetRawText(), options);
+                    string message = "The Order Still exist, so can not delete";
+                    HttpContext.Session.SetString("message", message);
+
+                    return RedirectToAction(nameof(Index));
+
+                }
+
             }
+            HttpContext.Session.Remove("message");
             return RedirectToAction(nameof(Index));
         }
 
@@ -168,7 +229,7 @@ namespace BouquetManagementWebClient.Controllers
                 // Lấy đối tượng "product" từ JSON
 
                 FlowerBouquet product = JsonSerializer.Deserialize<FlowerBouquet>(root.GetRawText(), options);
-
+                HttpContext.Session.Remove("message");
                 return View(product);
             }
 
