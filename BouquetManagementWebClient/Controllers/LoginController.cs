@@ -80,5 +80,42 @@ namespace BouquetManagementWebClient.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+
+        public async Task<IActionResult> Register()  ///  http://localhost:44092/Customer/Index
+        {
+
+            return View();
+
+
+        }
+
+
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Customer p)
+        {
+            if (ModelState.IsValid)
+            {
+                string strData = JsonSerializer.Serialize(p);
+                var contentData = new StringContent(strData, System.Text.Encoding.UTF8, "application/json");
+               
+                HttpResponseMessage response = await client.PostAsync($"{productApiUrl}/Register", contentData);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ViewBag.Message = "Insert successfully!";
+                }
+                else
+                {
+                    ViewBag.Message = "Error while calling WebAPI!";
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

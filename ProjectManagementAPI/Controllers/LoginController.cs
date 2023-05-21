@@ -36,5 +36,18 @@ namespace ProjectManagementAPI.Controllers
         }
 
 
+        [HttpPost("Register")]
+        public ActionResult PostProduct(Customer p)
+        {
+            var check = customer.FindCustomerByEmail(p.Email);
+            customer.SaveCustomer(p);
+            return Ok();
+        }
+
+
+
+
+
+
     }
 }

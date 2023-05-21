@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessObject;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BouquetManagementWebClient.Controllers
 {
@@ -24,7 +25,7 @@ namespace BouquetManagementWebClient.Controllers
             client = new HttpClient();
             var contentType = new MediaTypeWithQualityHeaderValue("application/json");
             client.DefaultRequestHeaders.Accept.Add(contentType);
-            productApiUrl = "http://localhost:61010/api/FlowerBouquet";
+            productApiUrl = "http://localhost:61010/api/Order";
         }
         public async Task<IActionResult> Index()  ///  http://localhost:44092/FlowerBouquet/Index
         {
@@ -62,9 +63,31 @@ namespace BouquetManagementWebClient.Controllers
             return RedirectToAction("Index", "Login");
         }
 
-        public ActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/OrderFlower");
+
+            string strData = response.Content.ReadAsStringAsync().Result;
+
+            using (JsonDocument document = JsonDocument.Parse(strData))
+            {
+                JsonElement root = document.RootElement;
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                JsonElement supplierElement = root.GetProperty("customer");
+               
+
+               
+                List<Customer> suppliers = JsonSerializer.Deserialize<List<Customer>>(supplierElement.GetRawText(), options);
+
+
+                ViewBag.customerID = new SelectList(suppliers, nameof(Customer.CustomerID), nameof(Customer.CustomerName));
+                HttpContext.Session.Remove("message");
+                return View();
+            }
 
         }
 

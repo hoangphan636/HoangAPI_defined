@@ -12,7 +12,7 @@ namespace ProjectManagementAPI.Controllers
     public class OrderController : ControllerBase
     {
 
-
+        CustomerRepository Customer = new CustomerRepository();
         OrderRepository Order = new OrderRepository();
         [HttpGet]
 
@@ -65,7 +65,26 @@ namespace ProjectManagementAPI.Controllers
             return Ok();
         }
 
+        [HttpGet("OrderFlower")]
+        public IActionResult CustomDetails()
+        {
 
+
+            var Customers = Customer.GetCustomer();
+          
+
+
+            var learn = new CustomerFul
+            {
+                FlowerBouquet = null,
+                Customer = Customers,
+              
+            };
+
+
+
+            return Ok(learn);
+        }
 
 
 

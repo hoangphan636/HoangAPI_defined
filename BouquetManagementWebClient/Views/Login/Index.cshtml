@@ -14,7 +14,13 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
+
 </head>
+<div class="logout-container">
+    <a asp-action="Register" class="btn btn-primary">Register</a>
+   
+</div>
+
 <body>
     <h3><span style="color: red;">@customerName</span></h3>
 
@@ -42,3 +48,58 @@
     </form>
 </body>
 </html>
+<style>
+    h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .logout-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-danger {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+</style>
