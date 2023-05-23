@@ -10,7 +10,7 @@ namespace Repository
     public interface IOrderDetailRepository
     {
         List<OrderDetail> GetOrderDetail();
-        OrderDetail FindFlowerBouquetById(int id);
+        List<OrderDetail> FindFlowerBouquetById(int id);
 
 
     }

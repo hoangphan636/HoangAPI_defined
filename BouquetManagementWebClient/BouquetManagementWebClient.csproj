@@ -9,8 +9,4 @@
     <ProjectReference Include="..\ProjectManagementAPI\ProjectManagementAPI.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Orderdetail\" />
-  </ItemGroup>
-
 </Project>

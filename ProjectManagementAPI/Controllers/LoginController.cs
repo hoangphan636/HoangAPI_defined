@@ -32,7 +32,7 @@ namespace ProjectManagementAPI.Controllers
             }
 
             var data = new { cus, admin };
-            return Ok(cus);
+            return Ok(data);
         }
 
 
@@ -40,8 +40,13 @@ namespace ProjectManagementAPI.Controllers
         public ActionResult PostProduct(Customer p)
         {
             var check = customer.FindCustomerByEmail(p.Email);
-            customer.SaveCustomer(p);
-            return Ok();
+            if(check == null)
+            {
+                customer.SaveCustomer(p);
+                return Ok();
+            }
+           
+            return NotFound();
         }
 
 

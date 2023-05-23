@@ -1,12 +1,38 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessObject;
+using Microsoft.AspNetCore.Mvc;
+using Repository;
+using System.Collections.Generic;
 
 namespace ProjectManagementAPI.Controllers
 {
-    public class OrderDetailController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class OrderDetailController : ControllerBase
     {
-        public IActionResult Index()
+
+        OrderDetailRepository OrderDetail = new OrderDetailRepository();
+
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<OrderDetail>> FindFlowerBouquetById(int id)
         {
-            return View();
+          var order =  OrderDetail.FindFlowerBouquetById(id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+            return Ok(order);
         }
+
+
+
+
+
+
+
+
+
+
+
     }
 }

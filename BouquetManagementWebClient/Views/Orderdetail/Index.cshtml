@@ -1,0 +1,106 @@
+﻿@model IEnumerable< BusinessObject.OrderDetail >
+@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Index";
+
+}
+@{
+    // Lấy giá trị Session
+    string customerName = Context.Session.GetString("CustomerName");
+    string email = Context.Session.GetString("Email");
+    string message = Context.Session.GetString("message");
+}
+
+
+<h1>Index</h1>
+<h1>Welcome, @customerName!</h1>
+<p>Email: @email</p>
+<div class="logout-container">
+    <a asp-action="Logout" class="btn btn-primary">Log out</a>
+</div>
+
+<h1> @message</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.OrderID)</th>
+            <th>@Html.DisplayNameFor(model => model.FlowerBouquetID)</th>
+            <th>@Html.DisplayNameFor(model => model.UnitPrice)</th>
+            <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+            <th>@Html.DisplayNameFor(model => model.Discount)</th>
+           
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.OrderID)</td>
+                <td>@Html.DisplayFor(modelItem => item.FlowerBouquetID)</td>
+                <td>@Html.DisplayFor(modelItem => item.UnitPrice)</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.Discount)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Back" class="btn btn-secondary">Back to List</a>
+<style>
+    h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .logout-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .btn-danger {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+</style>

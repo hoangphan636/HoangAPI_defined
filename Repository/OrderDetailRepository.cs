@@ -10,7 +10,7 @@ namespace Repository
 {
     public class OrderDetailRepository : IOrderDetailRepository
     {
-        public OrderDetail FindFlowerBouquetById(int id) => OrderDetailDAO.FindFlowerBouquetById(id);
+        public List<OrderDetail> FindFlowerBouquetById(int id) => OrderDetailDAO.FindFlowerBouquetById(id);
      
 
         public List<OrderDetail> GetOrderDetail() => OrderDetailDAO.GetOrderDetail();

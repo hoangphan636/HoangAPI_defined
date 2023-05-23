@@ -14,7 +14,7 @@ namespace Repository
 
         public void DeleteCustomer(Customer Customer) => CustomerDAO.DeleteCustomer( Customer);
 
-        public Customer FindCustomerByEmail(string email) => CustomerDAO.FindCustomerByEmail(email);
+        public List<Customer> FindCustomerByEmail(string email) => CustomerDAO.FindCustomerByEmail(email);
 
   
 

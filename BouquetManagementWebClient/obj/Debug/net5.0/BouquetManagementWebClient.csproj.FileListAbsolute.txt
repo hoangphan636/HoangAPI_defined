@@ -293,3 +293,4 @@ C:\Users\hoang\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\
 C:\Users\hoang\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\Debug\net5.0\Razor\Views\Order\Edit.cshtml.g.cs
 C:\Users\hoang\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\Debug\net5.0\Razor\Views\Order\Index.cshtml.g.cs
 C:\Users\hoang\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\Debug\net5.0\Razor\Views\Login\Register.cshtml.g.cs
+C:\Users\hoang\Documents\GitHub\HoangAPI_defined\BouquetManagementWebClient\obj\Debug\net5.0\Razor\Views\Orderdetail\Index.cshtml.g.cs

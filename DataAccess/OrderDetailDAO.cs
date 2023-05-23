@@ -28,14 +28,14 @@ namespace DataAccess
             return list;
         }
 
-        public static OrderDetail FindFlowerBouquetById(int id)
+        public static List<OrderDetail> FindFlowerBouquetById(int id)
         {
-            var list = new OrderDetail();
+            var list = new List<OrderDetail>();
             try
             {
                 using (var context = new FUFlowerSystemDbContext())
                 {
-                    list = context.OrderDetail.FirstOrDefault(x => x.FlowerBouquetID == id);
+                    list = context.OrderDetail.Where(x => x.OrderID == id).ToList();
                 }
             }
             catch (Exception ex)

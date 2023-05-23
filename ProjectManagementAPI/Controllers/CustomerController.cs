@@ -36,6 +36,25 @@ namespace ProjectManagementAPI.Controllers
 
             return Ok(product);
         }
+
+
+        [HttpGet("email/{email}")]
+        public IActionResult Details(string email)
+        {
+            var product = customer.FindCustomerByEmail(email);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+
+
+            return Ok(product);
+        }
+
+
+
         [HttpPut("{id}")]
         public IActionResult UpdateProduct(Customer p)
         {

@@ -55,36 +55,47 @@ namespace BouquetManagementWebClient.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Login");
         }
+        public async Task<IActionResult> Back()
+        {
 
-       
+            return RedirectToAction("Index", "Customer");
+        }
+
 
 
 
         public async Task<IActionResult> Create()
         {
-            HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/custom");
+            string Email = HttpContext.Session.GetString("Email");
 
-            string strData = response.Content.ReadAsStringAsync().Result;
 
-            using (JsonDocument document = JsonDocument.Parse(strData))
+            if (Email != null)
             {
-                JsonElement root = document.RootElement;
-                var options = new JsonSerializerOptions
+                HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/custom");
+
+                string strData = response.Content.ReadAsStringAsync().Result;
+
+                using (JsonDocument document = JsonDocument.Parse(strData))
                 {
-                    PropertyNameCaseInsensitive = true
-                };
+                    JsonElement root = document.RootElement;
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
 
-                JsonElement supplierElement = root.GetProperty("supplier");
-                JsonElement categoryElement = root.GetProperty("category");
+                    JsonElement supplierElement = root.GetProperty("supplier");
+                    JsonElement categoryElement = root.GetProperty("category");
 
-                List<Category> categories = JsonSerializer.Deserialize<List<Category>>(categoryElement.GetRawText(), options);
-                List<Supplier> suppliers = JsonSerializer.Deserialize<List<Supplier>>(supplierElement.GetRawText(), options);
+                    List<Category> categories = JsonSerializer.Deserialize<List<Category>>(categoryElement.GetRawText(), options);
+                    List<Supplier> suppliers = JsonSerializer.Deserialize<List<Supplier>>(supplierElement.GetRawText(), options);
 
-                ViewBag.CategoryId = new SelectList(categories, nameof(Category.CategoryID), nameof(Category.CategoryName));
-                ViewBag.SupplierID = new SelectList(suppliers, nameof(Supplier.SupplierID), nameof(Supplier.SupplierName));
-                HttpContext.Session.Remove("message");
-                return View();
+                    ViewBag.CategoryId = new SelectList(categories, nameof(Category.CategoryID), nameof(Category.CategoryName));
+                    ViewBag.SupplierID = new SelectList(suppliers, nameof(Supplier.SupplierID), nameof(Supplier.SupplierName));
+                    HttpContext.Session.Remove("message");
+                    return View();
+                }
             }
+            return RedirectToAction("Index", "Login");
         }
 
 
@@ -95,22 +106,29 @@ namespace BouquetManagementWebClient.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(FlowerBouquet p)
         {
-            if (ModelState.IsValid)
+            string Email = HttpContext.Session.GetString("Email");
+
+
+            if (Email != null)
             {
-                string strData = JsonSerializer.Serialize(p);
-                var contentData = new StringContent(strData, System.Text.Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(productApiUrl, contentData);
-                if (response.IsSuccessStatusCode)
+                if (ModelState.IsValid)
                 {
-                    ViewBag.Message = "Insert successfully!";
+                    string strData = JsonSerializer.Serialize(p);
+                    var contentData = new StringContent(strData, System.Text.Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await client.PostAsync(productApiUrl, contentData);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        ViewBag.Message = "Insert successfully!";
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Error while calling WebAPI!";
+                    }
                 }
-                else
-                {
-                    ViewBag.Message = "Error while calling WebAPI!";
-                }
+                HttpContext.Session.Remove("message");
+                return RedirectToAction(nameof(Index));
             }
-            HttpContext.Session.Remove("message");
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Login");
         }
 
 
@@ -120,72 +138,132 @@ namespace BouquetManagementWebClient.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/{id}");
-            string strData = await response.Content.ReadAsStringAsync();
+            string Email = HttpContext.Session.GetString("Email");
 
-            using (JsonDocument document = JsonDocument.Parse(strData))
+
+            if (Email != null)
             {
-                JsonElement root = document.RootElement;
-                var options = new JsonSerializerOptions
+                HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/{id}");
+                string strData = await response.Content.ReadAsStringAsync();
+
+                using (JsonDocument document = JsonDocument.Parse(strData))
                 {
-                    PropertyNameCaseInsensitive = true
-                };
+                    JsonElement root = document.RootElement;
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
 
 
-                FlowerBouquet product = JsonSerializer.Deserialize<FlowerBouquet>(root.GetRawText(), options);
-                HttpContext.Session.Remove("message");
-                return View(product);
+                    FlowerBouquet product = JsonSerializer.Deserialize<FlowerBouquet>(root.GetRawText(), options);
+                    HttpContext.Session.Remove("message");
+                    return View(product);
+                }
             }
-           
+            return RedirectToAction("Index", "Login");
         }
 
         public async Task<IActionResult> Edit(int id)
         {
-            HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/custom/{id}");
-            string strData = await response.Content.ReadAsStringAsync();
+            string Email = HttpContext.Session.GetString("Email");
 
-            using (JsonDocument document = JsonDocument.Parse(strData))
+
+            if (Email != null)
             {
-                JsonElement root = document.RootElement;
-                var options = new JsonSerializerOptions
+                HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/custom/{id}");
+                string strData = await response.Content.ReadAsStringAsync();
+
+                using (JsonDocument document = JsonDocument.Parse(strData))
                 {
-                    PropertyNameCaseInsensitive = true
-                };
+                    JsonElement root = document.RootElement;
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
 
 
-                FlowerBouquet product = JsonSerializer.Deserialize<FlowerBouquet>(root.GetRawText(), options);
-                HttpContext.Session.Remove("message");
-                return View(product);
+                    FlowerBouquet product = JsonSerializer.Deserialize<FlowerBouquet>(root.GetRawText(), options);
+                    HttpContext.Session.Remove("message");
+                    return View(product);
+                }
             }
-            
+            return RedirectToAction("Index", "Login");
+
         }
 
 
         public async Task<IActionResult> Update(FlowerBouquet product)
         {
-            var json = JsonSerializer.Serialize(product);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PutAsync($"{productApiUrl}/{product.FlowerBouquetID}", content);
-            if (response.IsSuccessStatusCode)
-            {
-                string strData = await response.Content.ReadAsStringAsync();
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                };
-                var createdProduct = JsonSerializer.Deserialize<FlowerBouquet>(strData, options);
+            string Email = HttpContext.Session.GetString("Email");
 
+
+            if (Email != null)
+            {
+                var json = JsonSerializer.Serialize(product);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PutAsync($"{productApiUrl}/{product.FlowerBouquetID}", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string strData = await response.Content.ReadAsStringAsync();
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    var createdProduct = JsonSerializer.Deserialize<FlowerBouquet>(strData, options);
+
+                }
+                HttpContext.Session.Remove("message");
+                return RedirectToAction(nameof(Index));
             }
-            HttpContext.Session.Remove("message");
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Login");
         }
 
 
         public async Task<IActionResult> Deleted(int id)
         {
-            HttpResponseMessage responses = await client.DeleteAsync($"{productApiUrl}/{id}");
-            string strDatas = await responses.Content.ReadAsStringAsync();
-            if (!strDatas.Equals("\"null\""))
+            string Email = HttpContext.Session.GetString("Email");
+
+
+            if (Email != null)
+            {
+                HttpResponseMessage responses = await client.DeleteAsync($"{productApiUrl}/{id}");
+                string strDatas = await responses.Content.ReadAsStringAsync();
+                if (!strDatas.Equals("\"null\""))
+                {
+                    HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/{id}");
+                    string strData = await response.Content.ReadAsStringAsync();
+
+                    using (JsonDocument document = JsonDocument.Parse(strData))
+                    {
+                        JsonElement root = document.RootElement;
+                        var options = new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true
+                        };
+
+                        // Lấy đối tượng "product" từ JSON
+
+                        FlowerBouquet product = JsonSerializer.Deserialize<FlowerBouquet>(root.GetRawText(), options);
+                        string message = "The Order Still exist, so can not delete";
+                        HttpContext.Session.SetString("message", message);
+
+                        return RedirectToAction(nameof(Index));
+
+                    }
+
+                }
+                HttpContext.Session.Remove("message");
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction("Index", "Login");
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            string Email = HttpContext.Session.GetString("Email");
+
+
+            if (Email != null)
             {
                 HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/{id}");
                 string strData = await response.Content.ReadAsStringAsync();
@@ -201,37 +279,11 @@ namespace BouquetManagementWebClient.Controllers
                     // Lấy đối tượng "product" từ JSON
 
                     FlowerBouquet product = JsonSerializer.Deserialize<FlowerBouquet>(root.GetRawText(), options);
-                    string message = "The Order Still exist, so can not delete";
-                    HttpContext.Session.SetString("message", message);
-
-                    return RedirectToAction(nameof(Index));
-
+                    HttpContext.Session.Remove("message");
+                    return View(product);
                 }
-
             }
-            HttpContext.Session.Remove("message");
-            return RedirectToAction(nameof(Index));
-        }
-
-        public async Task<IActionResult> Delete(int id)
-        {
-            HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/{id}");
-            string strData = await response.Content.ReadAsStringAsync();
-
-            using (JsonDocument document = JsonDocument.Parse(strData))
-            {
-                JsonElement root = document.RootElement;
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                };
-
-                // Lấy đối tượng "product" từ JSON
-
-                FlowerBouquet product = JsonSerializer.Deserialize<FlowerBouquet>(root.GetRawText(), options);
-                HttpContext.Session.Remove("message");
-                return View(product);
-            }
+            return RedirectToAction("Index", "Login");
 
         }
     }

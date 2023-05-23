@@ -56,11 +56,20 @@ namespace BouquetManagementWebClient.Controllers
                         PropertyNameCaseInsensitive = true
                     };
 
-                    // Lấy đối tượng "product" từ JSON
-                    
-                    Customer product = JsonSerializer.Deserialize<Customer>(root.GetRawText(), options);
-                    HttpContext.Session.SetString("CustomerName", product.CustomerName);
-                    HttpContext.Session.SetString("Email", product.Email);
+                    if (root.GetProperty("cus").ValueKind == JsonValueKind.Object)
+                    {
+                        // Lấy đối tượng "product" từ JSON "cus"
+                        Customer product = JsonSerializer.Deserialize<Customer>(root.GetProperty("cus").ToString(), options);
+                        HttpContext.Session.SetString("CustomerName", product.CustomerName);
+                        HttpContext.Session.SetString("Email", product.Email);
+                    }
+                    else if (root.GetProperty("admin").ValueKind == JsonValueKind.Object)
+                    {
+                        // Lấy đối tượng "product" từ JSON "admin"
+                        Customer product = JsonSerializer.Deserialize<Customer>(root.GetProperty("admin").ToString(), options);
+                        HttpContext.Session.SetString("CustomerName", product.CustomerName);
+                        HttpContext.Session.SetString("Email", product.Email);
+                    }
 
 
                     return RedirectToAction("Index", "Customer");
@@ -94,15 +103,14 @@ namespace BouquetManagementWebClient.Controllers
 
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Create(Customer p)
         {
             if (ModelState.IsValid)
             {
                 string strData = JsonSerializer.Serialize(p);
                 var contentData = new StringContent(strData, System.Text.Encoding.UTF8, "application/json");
-               
+
                 HttpResponseMessage response = await client.PostAsync($"{productApiUrl}/Register", contentData);
 
                 if (response.IsSuccessStatusCode)
@@ -111,11 +119,13 @@ namespace BouquetManagementWebClient.Controllers
                 }
                 else
                 {
-                    ViewBag.Message = "Error while calling WebAPI!";
+                    ViewBag.Message = "Email already exists";
+                    return View("Register"); // Truyền lại đối tượng Customer p cho Razor View Register.cshtml
                 }
             }
             return RedirectToAction(nameof(Index));
         }
+
 
     }
 }

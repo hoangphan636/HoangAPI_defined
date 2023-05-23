@@ -53,12 +53,15 @@
                 <td>
                     @Html.ActionLink("Details", "Details", new { id = item.OrderID }, new { @class = "btn btn-primary" })
                     @Html.ActionLink("Delete", "Delete", new { id = item.OrderID }, new { @class = "btn btn-danger" })
+
+                    @Html.ActionLink("OrderDetail", "OrderDetail", new { id = item.OrderID }, new { @class = "btn btn-danger" })
+
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
+<a asp-action="Back" class="btn btn-secondary">Back to List</a>
 <style>
     h1 {
         font-size: 24px;
