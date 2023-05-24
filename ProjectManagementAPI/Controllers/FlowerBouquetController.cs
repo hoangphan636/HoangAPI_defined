@@ -114,7 +114,8 @@ namespace ProjectManagementAPI.Controllers
             var po = OrderDetail.FindFlowerBouquetById(id);
             if (product == null)
             {
-                return NotFound();
+                FlowerBouquet.UpdateFlowerBouquetStatus(id);
+                return Ok();
             }
 
             if (po == null)

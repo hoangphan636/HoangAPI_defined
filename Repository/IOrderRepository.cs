@@ -14,6 +14,6 @@ namespace Repository
         Order FindOrderById(int id);
         void UpdateOrder(Order Order);
         void DeleteOrder(Order Order);
-
+        List<Order> FindOrderCustomerByEmail(int id);
     }
 }

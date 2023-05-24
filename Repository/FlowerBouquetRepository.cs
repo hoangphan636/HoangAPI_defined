@@ -25,5 +25,7 @@ namespace Repository
 
         public void UpdateFlowerBouquet(FlowerBouquet FlowerBouquet) => FlowerBouquetDAO.UpdateFlowerBouquet(FlowerBouquet);
 
+        public void UpdateFlowerBouquetStatus(int id) => FlowerBouquetDAO.UpdateFlowerBouquetStatus(id);
+
     }
 }

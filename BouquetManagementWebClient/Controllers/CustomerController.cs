@@ -49,7 +49,9 @@ namespace BouquetManagementWebClient.Controllers
                 {
                     PropertyNameCaseInsensitive = true
                 };
-                List<Customer> listProducts = JsonSerializer.Deserialize<List<Customer>>(strData, options);
+               
+                  IEnumerable<Customer> listProducts = new List<Customer> { JsonSerializer.Deserialize<Customer>(strData, options) };
+
                 return View(listProducts);
             }
             return RedirectToAction("Index", "Login");

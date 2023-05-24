@@ -17,6 +17,6 @@ namespace Repository
 
         void UpdateCustomer(Customer Customer);
         void DeleteCustomer(Customer Customer);
-        List<Customer> FindCustomerByEmail(string email);
+        Customer FindCustomerByEmail(string email);
     }
 }

@@ -56,6 +56,7 @@ namespace DataAccess
                 using (var context = new FUFlowerSystemDbContext())
                 {
                     list = context.FlowerBouquet.FirstOrDefault(x => x.FlowerBouquetID == id);
+                   
                 }
             }
             catch (Exception ex)
@@ -73,6 +74,23 @@ namespace DataAccess
                 using var context = new FUFlowerSystemDbContext();
 
                 context.FlowerBouquet.Update(FlowerBouquet);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+        public static void UpdateFlowerBouquetStatus(int id)
+        {
+            
+            try
+            {
+                using var context = new FUFlowerSystemDbContext();
+                var statusobject = FindFlowerBouquetById(id);
+                statusobject.FlowerBouquetStatus = false;
+                context.FlowerBouquet.Update(statusobject);
                 context.SaveChanges();
             }
             catch (Exception ex)

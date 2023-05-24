@@ -88,14 +88,14 @@ namespace DataAccess
             }
             return list;
         }
-        public static List<Customer> FindCustomerByEmail(string email)
+        public static Customer FindCustomerByEmail(string email)
         {
-            var list = new List<Customer>();
+            var list = new Customer();
             try
             {
                 using (var context = new FUFlowerSystemDbContext())
                 {
-                    list = context.Customer.Where(x => x.Email == email).ToList();
+                    list = context.Customer.FirstOrDefault(x => x.Email == email);
                 }
             }
             catch (Exception ex)

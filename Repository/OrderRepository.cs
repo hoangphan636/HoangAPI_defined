@@ -14,7 +14,10 @@ namespace Repository
       
 
         public Order FindOrderById(int id) => OrderDAO.FindOrderById( id);
-    
+
+        public List<Order> FindOrderCustomerByEmail(int id) => OrderDAO.FindOrderCustomerByEmail(id);
+
+
 
         public List<Order> GetOrder() => OrderDAO.GetOrder();
      

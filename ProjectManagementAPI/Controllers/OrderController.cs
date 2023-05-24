@@ -52,6 +52,40 @@ namespace ProjectManagementAPI.Controllers
             return RedirectToAction(nameof(Update), new { product });
         }
 
+        [HttpGet("emails/{email}")]
+        public IActionResult Details(string email)
+        {
+
+            var products = Customer.FindCustomerByEmail(email);
+            var product = Order.FindOrderCustomerByEmail(products.CustomerID.Value);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+
+
+            return Ok(product);
+        }
+
+        [HttpGet("Mail/{email}")]
+        public IActionResult DetailCustomer(string email)
+        {
+
+            var product = Customer.FindCustomerByEmail(email);
+            
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+
+
+            return Ok(product);
+        }
+
+
+
         [HttpDelete("{id}")]
         public ActionResult DeleteProduct(int id)
         {

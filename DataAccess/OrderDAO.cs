@@ -10,7 +10,7 @@ namespace DataAccess
 {
     public class OrderDAO
     {
-
+        CustomerDAO cus = new CustomerDAO();
         public static List<Order> GetOrder()
         {
             var list = new List<Order>();
@@ -65,6 +65,29 @@ namespace DataAccess
             }
             return list;
         }
+
+
+        public static List<Order> FindOrderCustomerByEmail(int id)
+        {
+            
+            var list = new List<Order>();
+           
+            try
+            {
+                
+                using (var context = new FUFlowerSystemDbContext())
+                {
+                    list = context.Order.Where(x => x.CustomerID == id).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
+        }
+
+
 
         public static void UpdateOrder(Order Order)
         {

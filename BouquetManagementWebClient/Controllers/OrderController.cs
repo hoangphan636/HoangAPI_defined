@@ -29,10 +29,10 @@ namespace BouquetManagementWebClient.Controllers
         }
         public async Task<IActionResult> Index()  ///  http://localhost:44092/FlowerBouquet/Index
         {
-            string FlowerBouquetName = HttpContext.Session.GetString("CustomerName");
+           
+            string Email = HttpContext.Session.GetString("Email");
 
-
-            if (FlowerBouquetName != null)
+            if (Email != null && Email.Equals("admin@FURentalSystem.com"))
             {
                 HttpResponseMessage response = await client.GetAsync(productApiUrl);
                 string strData = await response.Content.ReadAsStringAsync();
@@ -44,7 +44,20 @@ namespace BouquetManagementWebClient.Controllers
                 return View(listProducts);
 
             }
-            HttpContext.Session.Remove("message");
+            else if (Email != null && !Email.Equals("admin@FURentalSystem.com"))
+            {
+                HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/{"emails"}/{Email}");
+                string strData = await response.Content.ReadAsStringAsync();
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                List<Order> listProducts = JsonSerializer.Deserialize<List<Order>>(strData, options);
+               
+                return View(listProducts);
+
+            }
+                HttpContext.Session.Remove("message");
             return RedirectToAction("Index", "Login");
 
 
@@ -83,8 +96,7 @@ namespace BouquetManagementWebClient.Controllers
         {
             string Email = HttpContext.Session.GetString("Email");
 
-
-            if (Email != null)
+            if (Email != null && Email.Equals("admin@FURentalSystem.com"))
             {
                 HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/OrderFlower");
 
@@ -109,6 +121,28 @@ namespace BouquetManagementWebClient.Controllers
                     HttpContext.Session.Remove("message");
                     return View();
                 }
+            }
+            else if (Email != null && !Email.Equals("admin@FURentalSystem.com"))
+            {
+                HttpResponseMessage response = await client.GetAsync($"{productApiUrl}/{"Mail"}/{Email}");
+                string strData = response.Content.ReadAsStringAsync().Result;
+
+                using (JsonDocument document = JsonDocument.Parse(strData))
+                {
+                    JsonElement root = document.RootElement;
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+
+                    Customer customer = JsonSerializer.Deserialize<Customer>(root.GetRawText(), options);
+                    List<Customer> suppliers = new List<Customer> { customer };
+
+                    ViewBag.customerID = new SelectList(suppliers, nameof(Customer.CustomerID), nameof(Customer.CustomerName));
+                    HttpContext.Session.Remove("message");
+                    return View();
+                }
+
             }
             return RedirectToAction("Index", "Login");
         }

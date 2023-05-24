@@ -15,6 +15,7 @@ namespace Repository
         void UpdateFlowerBouquet(FlowerBouquet FlowerBouquet);
 
         void DeleteFlowerBouquet(FlowerBouquet FlowerBouquet);
+        void UpdateFlowerBouquetStatus(int id);
 
     }
 }
